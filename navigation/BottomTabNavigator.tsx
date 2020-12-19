@@ -1,13 +1,25 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
+import { AntDesign } from "@expo/vector-icons";
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import Colors from "../constants/Colors";
+import useColorScheme from "../hooks/useColorScheme";
+import HomeScreen from "../screens/HomeScreen";
+import SearchScreen from "../screens/SearchScreen";
+import MessageScreen from "../screens/MessageScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+
+import {
+  BottomTabParamList,
+  HomeParamList,
+  SearchParamList,
+  MessageParamList,
+  NotificationsParamList,
+  ProfileParamList,
+} from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,20 +28,55 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].tint,
+        showLabel: false,
+      }}
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Home"
+        component={TabHomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="home" size={24} color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Search"
+        component={TabSearchNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="search1" size={24} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Notifications"
+        component={TabMessageNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="message1" size={24} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Messages"
+        component={TabNotifactionsNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="notifications" size={24} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={TabProfileNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="user" size={24} color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -44,30 +91,72 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabHomeStack = createStackNavigator<HomeParamList>();
 
-function TabOneNavigator() {
+function TabHomeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <TabHomeStack.Navigator>
+      <TabHomeStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerTitle: "Home" }}
       />
-    </TabOneStack.Navigator>
+    </TabHomeStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabSearchStack = createStackNavigator<SearchParamList>();
 
-function TabTwoNavigator() {
+function TabSearchNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <TabSearchStack.Navigator>
+      <TabSearchStack.Screen
+        name="Tab NEXT FEATURE"
+        component={SearchScreen}
+        options={{ headerTitle: "Tab NEXT FEATURE" }}
       />
-    </TabTwoStack.Navigator>
+    </TabSearchStack.Navigator>
+  );
+}
+
+const TabMessageStack = createStackNavigator<MessageParamList>();
+
+function TabMessageNavigator() {
+  return (
+    <TabMessageStack.Navigator>
+      <TabMessageStack.Screen
+        name="Tab NEXT FEATURE"
+        component={MessageScreen}
+        options={{ headerTitle: "Tab NEXT FEATURE" }}
+      />
+    </TabMessageStack.Navigator>
+  );
+}
+
+const TabNotifactionsStack = createStackNavigator<NotificationsParamList>();
+
+function TabNotifactionsNavigator() {
+  return (
+    <TabNotifactionsStack.Navigator>
+      <TabNotifactionsStack.Screen
+        name="Tab NEXT FEATURE"
+        component={NotificationsScreen}
+        options={{ headerTitle: "Tab NEXT FEATURE" }}
+      />
+    </TabNotifactionsStack.Navigator>
+  );
+}
+
+const TabProfileStack = createStackNavigator<ProfileParamList>();
+
+function TabProfileNavigator() {
+  return (
+    <TabProfileStack.Navigator>
+      <TabProfileStack.Screen
+        name="Tab NEXT FEATURE"
+        component={ProfileScreen}
+        options={{ headerTitle: "Tab NEXT FEATURE" }}
+      />
+    </TabProfileStack.Navigator>
   );
 }

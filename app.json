@@ -4,7 +4,7 @@
     "slug": "kinkow",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Kin-Logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -23,9 +23,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/Kin-Logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.kurukmitl.kinkow01",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
