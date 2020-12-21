@@ -2,7 +2,7 @@
   "expo": {
     "name": "kinkow",
     "slug": "kinkow",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/Kin-Logo.png",
     "scheme": "myapp",
@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/images/Kin-Logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.kurukmitl.kinkow01",
+      "package": "com.kurukmitl.kinkow03",
       "versionCode": 1
     },
     "web": {

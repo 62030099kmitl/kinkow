@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kinkow-dev-35522-authRole",
+      "UnauthRoleArn": "arn:aws:iam::559302147525:role/amplify-kinkow-dev-35522-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::559302147525:role/amplify-kinkow-dev-35522-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-kinkow-dev-35522-deployment",
+      "UnauthRoleName": "amplify-kinkow-dev-35522-unauthRole",
+      "StackName": "amplify-kinkow-dev-35522",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:559302147525:stack/amplify-kinkow-dev-35522/a2665ae0-423c-11eb-b3e7-020215af40e8",
+      "AmplifyAppId": "d5jj18eon6sp8"
+    },
+    "categories": {
+      "auth": {
+        "kinkow0c275eb7": {}
+      }
+    }
+  }
+}

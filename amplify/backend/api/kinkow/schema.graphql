@@ -1,0 +1,28 @@
+type User @model {
+  id: ID!
+  username: String!
+  image: String!
+  email: String!
+  name: String!
+  kins: [Kin] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type Kin @model @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  content: String!
+  userID: ID!
+  image: String!
+  user: User @connection(fields: ["userID"])
+  teams: [Team] @connection(keyName: "byKin", fields: ["id"])
+}
+
+type Team
+  @model(queries: null)
+  @key(name: "byUser", fields: ["userID", "kinID"])
+  @key(name: "byKin", fields: ["kinID", "userID"]) {
+  id: ID!
+  userID: ID!
+  kinID: ID!
+  user: User! @connection(fields: ["userID"])
+  kin: Kin! @connection(fields: ["kinID"])
+}

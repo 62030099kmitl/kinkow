@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
+import { S3Image } from "aws-amplify-react-native";
 import { KinType } from "../../../types";
 import styles from "./styles";
 import { Entypo } from "@expo/vector-icons";
@@ -23,6 +24,7 @@ const MainContainer = ({ kin }: MainContainerProps) => (
     </View>
     <View>
       <Text style={styles.content}>{kin.content}</Text>
+      {!!kin.image && <S3Image style={styles.image} imgKey={kin.image} />}
     </View>
     <Footer kin={kin} />
   </View>

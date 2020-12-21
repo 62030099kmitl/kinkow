@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { AntDesign } from "@expo/vector-icons";
+import { Image, StyleSheet, Text } from "react-native";
+import { API, Auth, graphqlOperation } from "aws-amplify";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -11,6 +14,8 @@ import SearchScreen from "../screens/SearchScreen";
 import MessageScreen from "../screens/MessageScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ProfilePicture from "../components/ProfilePicture";
+import { getUser } from "../graphql/queries";
 
 import {
   BottomTabParamList,
@@ -94,12 +99,48 @@ function TabBarIcon(props: { name: string; color: string }) {
 const TabHomeStack = createStackNavigator<HomeParamList>();
 
 function TabHomeNavigator() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    //get current user
+    const fetchUser = async () => {
+      const userInfo = await Auth.currentAuthenticatedUser({
+        bypassCache: true,
+      });
+      if (!userInfo) {
+        return;
+      }
+      try {
+        const userData = await API.graphql(
+          graphqlOperation(getUser, { id: userInfo.attributes.sub })
+        );
+        if (userData) {
+          setUser(userData.data.getUser);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUser();
+  }, []);
+
   return (
     <TabHomeStack.Navigator>
       <TabHomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: "Home" }}
+        options={{
+          headerRightContainerStyle: {
+            marginRight: 20,
+          },
+          headerLeftContainerStyle: {
+            marginLeft: 20,
+          },
+          headerTitle: () => (
+            <Text style={{ color: Colors.light.tint }}>KIN APPLICATION</Text>
+          ),
+          headerLeft: () => <ProfilePicture size={30} image={user?.image} />,
+        }}
       />
     </TabHomeStack.Navigator>
   );
